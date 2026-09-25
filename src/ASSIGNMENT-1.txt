@@ -1,0 +1,374 @@
+DATA STRUCTURES AND ALGORITHMS
+PSEUDOCODE PROBLEMS
+
+
+==================================================
+PC-1: PRIME NUMBER CHECKER
+==================================================
+
+Algorithm: Check Prime Number
+
+Step 1: Start
+Step 2: Input N
+Step 3: Set i = 2
+Step 4: Repeat while i * i <= N
+            If N % i == 0
+                Print "Not Prime"
+                Stop
+            End If
+            i = i + 1
+        End While
+Step 5: Print "Prime"
+Step 6: Stop
+
+
+Example:
+Input: 61
+Output: Prime
+
+Input: 8
+Output: Not Prime
+
+
+==================================================
+PC-2: NUMBER DIGIT REVERSAL
+==================================================
+
+Algorithm: Reverse the Digits of a Number
+
+Step 1: Start
+Step 2: Input N
+Step 3: Set reverse = 0
+Step 4: Repeat while N > 0
+            digit = N % 10
+            reverse = reverse * 10 + digit
+            N = N / 10
+        End While
+Step 5: Print reverse
+Step 6: Stop
+
+
+Example:
+Input: 1234
+Output: 4321
+
+Input: 806
+Output: 608
+
+
+
+SECTION-2
+             ┌─────────────┐
+             │    START    │
+             └──────┬──────┘
+                    ↓
+             ┌─────────────┐
+             │   Input N   │
+             └──────┬──────┘
+                    ↓
+             ┌─────────────┐
+             │    i = 2    │
+             └──────┬──────┘
+                    ↓
+             ┌─────────────┐
+             │  i × i <= N?│
+             └──────┬──────┘
+                  Yes│
+                     ↓
+             ┌─────────────┐
+             │  N % i == 0?│
+             └──────┬──────┘
+                Yes │       No
+                    ↓        ↓
+          ┌─────────────┐  ┌───────────┐
+          │ Print "Not  │  │  i = i+1  │
+          │   Prime"    │  └─────┬─────┘
+          └──────┬──────┘        │
+                 ↓               │
+               STOP  ←───────────┘
+
+If i × i <= N is NO:
+
+             ┌─────────────┐
+             │ Print Prime │
+             └──────┬──────┘
+                    ↓
+                  STOP
+				  
+				  
+NUMBER DIGIT REVERSAL FLOW CHART		
+             ┌─────────────┐
+             │    START    │
+             └──────┬──────┘
+                    ↓
+             ┌─────────────┐
+             │   Input N   │
+             └──────┬──────┘
+                    ↓
+             ┌─────────────┐
+             │ reverse = 0 │
+             └──────┬──────┘
+                    ↓
+             ┌─────────────┐
+             │    N > 0?   │
+             └──────┬──────┘
+                Yes │       No
+                    ↓        ↓
+             ┌─────────────┐ ┌─────────────┐
+             │ digit=N%10  │ │Print reverse│
+             └──────┬──────┘ └──────┬──────┘
+                    ↓                ↓
+             ┌────────────────┐    STOP
+             │reverse=reverse │
+             │ *10 + digit    │
+             └──────┬─────────┘
+                    ↓
+             ┌─────────────┐
+             │   N = N/10  │
+             └──────┬──────┘
+                    │
+                    └──────────→ N > 0?
+
+
+
+
+DSA COMPLEXITY.JAVA
+public class DSA_Complexity {
+
+    // =========================================================
+    // TC-1: LINEAR SEARCH TIME COMPLEXITY
+    // =========================================================
+
+    /*
+     Linear Search checks elements one by one.
+
+     Sample Array:
+     {8, 61, 2, 3, 4, 0}
+
+     BEST CASE:
+     Target = 8
+
+     The target is present at the first position.
+     Only 1 comparison is required.
+
+     Best Case Time Complexity = O(1)
+
+     WORST CASE:
+     Target = 0
+
+     The target is present at the last position.
+     All N elements are checked.
+
+     A target that is not present also requires checking
+     all N elements.
+
+     Worst Case Time Complexity = O(N)
+
+     AVERAGE CASE:
+     If the target is at a random position, approximately
+     N/2 elements are checked on average.
+
+     Average Case Time Complexity = O(N)
+    */
+
+
+    // =========================================================
+    // TC-2: ITERATIVE BINARY SEARCH
+    // =========================================================
+
+    /*
+     Sorted Array:
+     {0, 2, 3, 4, 8, 61}
+
+     Target = 4
+
+     Step 1:
+     start = 0
+     end = 5
+     mid = (0 + 5) / 2 = 2
+     arr[mid] = 3
+
+     Since 3 < 4:
+     Search the right half.
+
+     New range:
+     start = 3
+     end = 5
+
+     Step 2:
+     mid = (3 + 5) / 2 = 4
+     arr[mid] = 8
+
+     Since 8 > 4:
+     Search the left half.
+
+     New range:
+     start = 3
+     end = 3
+
+     Step 3:
+     mid = (3 + 3) / 2 = 3
+     arr[mid] = 4
+
+     Target found.
+
+
+     SEARCH SPACE:
+
+     N
+     ↓
+     N/2
+     ↓
+     N/4
+     ↓
+     N/8
+     ↓
+     ...
+
+     After k steps:
+
+     N / 2^k = 1
+
+     N = 2^k
+
+     k = log₂N
+
+     Therefore:
+
+     Worst Case Time Complexity = O(log N)
+    */
+
+
+    // =========================================================
+    // TC-3: MERGE SORT TIME COMPLEXITY
+    // =========================================================
+
+    /*
+     Sample Array:
+     {8, 61, 2, 3, 4, 0}
+
+
+     DIVISION TREE:
+
+                         [8,61,2,3,4,0]
+                          /           \
+                    [8,61,2]       [3,4,0]
+                     /    \          /   \
+                  [8]    [61,2]   [3]  [4,0]
+                          /  \          / \
+                        [61] [2]      [4] [0]
+
+
+     Merge Sort divides the array into two halves
+     until individual elements are obtained.
+
+     At every level, all N elements are processed
+     during merging.
+
+     Level 0: N work
+     Level 1: N work
+     Level 2: N work
+     ...
+     
+     Number of levels = log₂N
+
+     Therefore:
+
+     Total Work = N × log₂N
+
+     Time Complexity = O(N log N)
+
+
+     Recurrence Relation:
+
+     T(N) = 2T(N/2) + O(N)
+
+     Using the recursion tree:
+
+     Level 0  = N
+     Level 1  = 2 × N/2 = N
+     Level 2  = 4 × N/4 = N
+     ...
+     Level log N = N
+
+     Total = N log N
+
+     Final Time Complexity = O(N log N)
+    */
+
+
+    // =========================================================
+    // SC-1: LINEAR SEARCH SPACE COMPLEXITY
+    // =========================================================
+
+    /*
+     Linear Search uses only a few variables such as:
+
+     i
+     target
+     array reference
+
+     It does not create another array.
+
+     Therefore, the auxiliary space does not depend
+     on the size of the input array.
+
+     Auxiliary Space Complexity = O(1)
+    */
+
+
+    // =========================================================
+    // SC-2: ITERATIVE BINARY SEARCH SPACE COMPLEXITY
+    // =========================================================
+
+    /*
+     Iterative Binary Search uses variables such as:
+
+     start
+     end
+     mid
+
+     It does not create any extra array.
+
+     Therefore:
+
+     Auxiliary Space Complexity = O(1)
+    */
+
+
+    // =========================================================
+    // SC-3: MERGE SORT SPACE COMPLEXITY
+    // =========================================================
+
+    /*
+     Merge Sort requires an additional temporary array
+     for merging the elements.
+
+     For an input of size N, the temporary array can
+     require N extra spaces.
+
+     Therefore:
+
+     Auxiliary Space Complexity = O(N)
+
+     Note:
+     Recursive function calls also use stack space,
+     which is O(log N).
+
+     But the temporary array requires O(N) space,
+     so the overall auxiliary space complexity is:
+
+     O(N)
+    */
+
+
+    public static void main(String[] args) {
+
+        // This file contains the solutions and
+        // complexity analysis in the comments above.
+
+        System.out.println("DSA Complexity Practice Sheet");
+    }
+}
+					
+				  
